@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFCScribe — Support</title>
+<style>
+:root { color-scheme: light dark; --fg: #111; --bg: #fff; --muted: #555; --accent: #0064F5; }
+@media (prefers-color-scheme: dark) { :root { --fg: #f0f0f0; --bg: #111; --muted: #aaa; --accent: #4d94ff; } }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 3rem 1.5rem; font: 16px/1.6 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 2rem; }
+h2 { margin-top: 2rem; }
+.muted { color: var(--muted); font-size: 0.9rem; }
+a { color: var(--accent); }
+footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="muted"><a href="index.html">&larr; NFCScribe</a></p>
+<h1>Support</h1>
+<p>NFCScribe reads and writes NDEF NFC tags on iPhone. This page answers common questions. If yours isn't here, email <a href="mailto:support@timeo.my">support@timeo.my</a>.</p>
+
+<h2>Quick start</h2>
+<ol>
+<li><strong>Read a tag</strong> &mdash; Open the <em>Read</em> tab, tap <strong>Scan tag</strong>, hold the top of your iPhone against an NFC tag.</li>
+<li><strong>Write to a tag</strong> &mdash; Open the <em>Write</em> tab, choose <em>Text</em> or <em>URL</em>, type your message, tap <strong>Write to tag</strong>, present a writable NDEF tag.</li>
+<li><strong>See past scans</strong> &mdash; Open the <em>History</em> tab.</li>
+</ol>
+
+<h2>Compatible iPhones</h2>
+<p>iPhone 7 or newer running iOS 17 or later. iPad is not supported (no NFC hardware). The simulator cannot perform NFC scans.</p>
+
+<h2>Compatible tags</h2>
+<p>Any <strong>NDEF-formatted</strong> tag, including:</p>
+<ul>
+<li>NTAG213 / 215 / 216 (most common retail NFC stickers)</li>
+<li>MIFARE Ultralight, Ultralight C, Ultralight EV1</li>
+<li>Type 2, Type 4, Type 5 NDEF tags</li>
+<li>ICODE SLI, Topaz 512</li>
+</ul>
+<p>Tags that are <em>not</em> NDEF formatted (e.g. raw MIFARE Classic, transit cards, payment cards) cannot be read or written by NFCScribe. This is an iOS hardware/policy limitation, not specific to our app.</p>
+
+<h2>Why does writing fail?</h2>
+<p>Common reasons:</p>
+<ul>
+<li><strong>Tag is read-only</strong> &mdash; once a tag has been locked (its OTP / lock bytes set), it can never be written again. NFCScribe will tell you when this happens. Buy fresh, unlocked tags if you need to write.</li>
+<li><strong>Payload too large</strong> &mdash; NTAG213 holds about 137 bytes of NDEF, NTAG215 holds 480, NTAG216 holds 868. NFCScribe checks size before writing.</li>
+<li><strong>Tag moved away too quickly</strong> &mdash; hold the tag steady against the top of the iPhone for at least 1&ndash;2 seconds.</li>
+<li><strong>Multiple tags in field</strong> &mdash; move the others away.</li>
+</ul>
+
+<h2>Why doesn't NFC work on my iPhone?</h2>
+<ul>
+<li>Make sure NFC permission is granted: <em>Settings &rarr; NFCScribe &rarr; NFC</em></li>
+<li>Use the <strong>top edge</strong> of the iPhone, not the back center.</li>
+<li>iPhone case may be too thick or contain metal &mdash; try without the case.</li>
+<li>iPad has no NFC hardware.</li>
+</ul>
+
+<h2>Where is my history stored?</h2>
+<p>In the app's private Documents folder on your iPhone. It is not synced to iCloud, and it never leaves the device. To remove all history, tap the trash icon in the <em>History</em> tab and confirm "Clear all", or simply uninstall the app.</p>
+
+<h2>Privacy</h2>
+<p>See the <a href="privacy.html">Privacy Policy</a>. Short version: NFCScribe makes zero network requests.</p>
+
+<h2>Contact</h2>
+<p>Email <a href="mailto:support@timeo.my">support@timeo.my</a>. Please include your iPhone model and iOS version, and a description of the tag you're trying to read or write (brand / chip type if known).</p>
+
+<footer>
+&copy; 2026 Oxloz LLC · <a href="mailto:support@timeo.my">support@timeo.my</a>
+</footer>
+</div>
+</body>
+</html>
