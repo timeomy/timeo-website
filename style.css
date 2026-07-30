@@ -211,8 +211,20 @@ a {
   color: var(--gray-900);
 }
 
-.nav-cta {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-left: auto;
+  flex-shrink: 0;
+}
+
+.nav-login {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+}
+
+.nav-cta {
   flex-shrink: 0;
 }
 
@@ -1811,7 +1823,7 @@ a {
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .nav-cta { display: none; }
+  .nav-actions { display: none; }
   .mobile-menu-btn { display: flex; }
 
   .hero-headline {

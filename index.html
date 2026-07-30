@@ -1,734 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeo — One Platform. Every Business.</title>
-  <meta name="description" content="Timeo is the all-in-one business operating system for service businesses and retail. Bookings, products, customers, staff — unified." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="shortcut icon" href="favicon.svg" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeo | The membership OS for Malaysian gyms and salons</title>
+<meta name="description" content="Sell packages, take bookings, check members in, and get paid. FPX, DuitNow, WhatsApp, BM/EN. RM99/mo flat.">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0b;
+    --ink-2: #1c1c20;
+    --muted: #6b6b70;
+    --faint: #9a9aa0;
+    --line: #e7e7e9;
+    --surface: #f6f6f7;
+    --card: #ffffff;
+    --green: #0f7b4d;
+    --green-bg: #e8f5ee;
+    --amber: #92600a;
+    --amber-bg: #fdf3e0;
+    --radius: 10px;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--ink); background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .mono-label { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .section { padding: 96px 0; border-top: 1px solid var(--line); }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 12px 0 16px; }
+  .section-head p { font-size: 17px; color: var(--muted); }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; padding: 11px 20px; border-radius: 8px; border: 1px solid transparent; cursor: pointer; transition: all .15s ease; }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { background: var(--ink-2); transform: translateY(-1px); }
+  .btn-ghost { border-color: var(--line); background: #fff; color: var(--ink); }
+  .btn-ghost:hover { background: var(--surface); }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; }
+  .logo span { color: var(--faint); }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-ctas { display: flex; gap: 10px; align-items: center; }
+  .nav-ctas .login { font-size: 14px; font-weight: 500; color: var(--muted); margin-right: 6px; }
+  .nav-ctas .login:hover { color: var(--ink); }
+  .nav-ctas .btn { padding: 8px 16px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; text-align: center; }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin: 20px auto 22px; max-width: 800px; }
+  .hero p.sub { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 auto 36px; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; margin-bottom: 14px; }
+  .hero-note { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+
+  /* Mockup */
+  .mock-frame { margin: 64px auto 0; max-width: 960px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px -24px rgba(10,10,11,.18); text-align: left; }
+  .mock-bar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .mock-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .mock-url { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-left: 10px; }
+  .mock-body { display: flex; min-height: 380px; background: #fff; }
+  .mock-side { width: 180px; border-right: 1px solid var(--line); padding: 16px 10px; background: var(--surface); flex-shrink: 0; }
+  .mock-side .brand { font-weight: 800; font-size: 14px; padding: 4px 10px 14px; letter-spacing: -0.02em; }
+  .mock-nav-item { font-size: 13px; font-weight: 500; color: var(--muted); padding: 7px 10px; border-radius: 6px; display: flex; justify-content: space-between; }
+  .mock-nav-item.active { background: var(--ink); color: #fff; }
+  .mock-nav-item .count { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+  .mock-nav-item.active .count { color: rgba(255,255,255,.6); }
+  .mock-main { flex: 1; padding: 20px 22px; min-width: 0; }
+  .mock-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .mock-title { font-size: 16px; font-weight: 700; }
+  .mock-chip { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); }
+  .mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  .mock-stat { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+  .mock-stat .k { font-size: 12px; color: var(--muted); }
+  .mock-stat .v { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-top: 2px; }
+  .mock-stat .d { font-family: var(--mono); font-size: 10px; color: var(--green); }
+  .mock-table { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .mock-row { display: grid; grid-template-columns: 2fr 1.6fr 1fr 1fr; gap: 8px; padding: 10px 14px; font-size: 13px; border-top: 1px solid var(--line); align-items: center; }
+  .mock-row:first-child { border-top: 0; background: var(--surface); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
+  .mock-row .name { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .mock-ava { width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 9px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .mock-ava.b { background: #3d5a80; } .mock-ava.c { background: #7b5ea7; } .mock-ava.d2 { background: #b3722a; }
+  .pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 99px; width: fit-content; }
+  .pill.ok { background: var(--green-bg); color: var(--green); }
+  .pill.warn { background: var(--amber-bg); color: var(--amber); }
+  .pill.mut { background: var(--surface); color: var(--muted); }
+  .mock-amt { font-family: var(--mono); font-size: 12px; text-align: right; }
+  .mock-toast { position: absolute; right: 18px; bottom: 18px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; font-size: 12px; box-shadow: 0 12px 32px -12px rgba(10,10,11,.25); display: flex; gap: 9px; align-items: flex-start; max-width: 250px; }
+  .mock-toast .wa { width: 18px; height: 18px; border-radius: 50%; background: var(--green); color: #fff; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .mock-toast b { display: block; font-size: 12px; }
+  .mock-toast span { color: var(--muted); font-size: 11px; }
+  .mock-main-rel { position: relative; }
+
+  /* Problem */
+  .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .prob-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .prob-card h3 { font-size: 18px; font-weight: 700; margin: 10px 0 8px; }
+  .prob-card p { font-size: 15px; color: var(--muted); }
+
+  /* Pillars */
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pillar { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; background: var(--card); transition: transform .15s ease, box-shadow .15s ease; }
+  .pillar:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -20px rgba(10,10,11,.18); }
+  .pillar .num { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .pillar h3 { font-size: 17px; font-weight: 700; margin: 12px 0 8px; }
+  .pillar p { font-size: 14px; color: var(--muted); }
+
+  /* Verticals */
+  .vert-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .vert { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; }
+  .vert .emoji { font-size: 26px; }
+  .vert h3 { font-size: 17px; font-weight: 700; margin: 12px 0 6px; }
+  .vert p { font-size: 14px; color: var(--muted); }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+  .step { border-top: 2px solid var(--ink); padding-top: 20px; }
+  .step .num { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .step h3 { font-size: 17px; font-weight: 700; margin: 10px 0 8px; }
+  .step p { font-size: 14px; color: var(--muted); }
+
+  /* Pricing */
+  .price-card { border: 1px solid var(--ink); border-radius: 14px; max-width: 560px; margin: 0 auto; padding: 40px; text-align: center; box-shadow: 0 24px 60px -30px rgba(10,10,11,.25); }
+  .price-amount { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; margin: 14px 0 4px; }
+  .price-amount small { font-size: 18px; font-weight: 500; color: var(--muted); }
+  .price-note { font-size: 15px; color: var(--muted); margin-bottom: 26px; }
+  .price-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; text-align: left; margin-bottom: 30px; font-size: 14px; }
+  .price-feats div { display: flex; gap: 9px; align-items: baseline; }
+  .price-feats .tick { color: var(--green); font-weight: 700; }
+  .price-sub { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 14px; }
+
+  /* FAQ */
+  .faq { max-width: 720px; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; font-size: 16px; font-weight: 600; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: var(--mono); font-size: 18px; color: var(--faint); transition: transform .15s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq .a { padding: 0 0 20px; font-size: 15px; color: var(--muted); max-width: 600px; }
+
+  /* CTA */
+  .cta-final { text-align: center; padding: 110px 0; border-top: 1px solid var(--line); }
+  .cta-final h2 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin: 14px 0 18px; }
+  .cta-final p { font-size: 17px; color: var(--muted); margin-bottom: 32px; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 56px 0 40px; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 44px; }
+  .foot-brand p { font-size: 13px; color: var(--muted); margin-top: 10px; max-width: 240px; }
+  .foot-col h4 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin-bottom: 14px; }
+  .foot-col a { display: block; font-size: 14px; color: var(--muted); padding: 4px 0; }
+  .foot-col a:hover { color: var(--ink); }
+  .foot-base { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 22px; font-size: 13px; color: var(--faint); }
+
+  @media (max-width: 860px) {
+    .section { padding: 64px 0; }
+    .pillar-grid, .vert-strip, .steps, .prob-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .mock-side { display: none; }
+    .mock-stats { grid-template-columns: 1fr; }
+    .mock-row { grid-template-columns: 1.6fr 1fr 1fr; }
+    .mock-row .col-plan { display: none; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .price-feats { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <span class="logo-text">timeo</span>
-        <span class="logo-dot">.</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary nav-cta">Get Started</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://timeo.my">timeo<span>.my</span></a>
+    <div class="nav-links">
+      <a href="#product">Product</a>
       <a href="#features">Features</a>
-      <a href="#industries">Industries</a>
       <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
-      <a href="#contact" class="btn btn-primary">Get Started</a>
+      <a href="#faq">FAQ</a>
     </div>
-  </nav>
+    <div class="nav-ctas">
+      <a class="login" href="https://app.timeo.my/sign-in">Log in</a>
+      <a class="btn btn-primary" href="https://app.timeo.my/sign-in">Get started</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-gradient"></div>
-    <div class="hero-container">
-      <div class="hero-content">
-        <div class="hero-badge fade-in">
-          <span class="badge-dot"></span>
-          <span>Multi-tenant Business OS — Now Live</span>
-        </div>
-        <h1 class="hero-headline fade-in">One Platform.<br /><span class="gradient-text">Every Business.</span></h1>
-        <p class="hero-subheadline fade-in">
-          Timeo is the all-in-one business operating system for service businesses and retail.
-          Bookings, products, customers, staff — unified.
-        </p>
-        <div class="hero-ctas fade-in">
-          <a href="#contact" class="btn btn-primary btn-large">Get Started</a>
-          <a href="#features" class="btn btn-ghost btn-large">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            See How It Works
-          </a>
-        </div>
-        <p class="hero-onboarding-note fade-in">Onboarded by our team — no self-setup required.</p>
-        <div class="hero-app-badges fade-in">
-          <div class="app-badges-label">Available on</div>
-          <div class="app-badges">
-            <a href="#" class="app-badge apple-badge">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-              </svg>
-              <div class="badge-text">
-                <span class="badge-sub">Download on the</span>
-                <span class="badge-main">App Store</span>
-              </div>
-            </a>
-            <a href="#" class="app-badge google-badge">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.18 23.76c.3.17.64.24.99.2l12.5-11.46-3.5-3.5L3.18 23.76zM.54 1.18C.2 1.54 0 2.1 0 2.84v18.32c0 .74.2 1.3.55 1.66l.09.08 10.26-10.26v-.24L.63 1.1l-.09.08zM22.3 10.56l-2.94-1.67-3.29 3.29 3.29 3.29 2.96-1.68c.84-.48.84-1.26-.02-1.74v.01zM4.17.24l12.5 11.46-3.5 3.5L.99.44C1.51.06 2.13.01 2.79.24h1.38z"/>
-              </svg>
-              <div class="badge-text">
-                <span class="badge-sub">Get it on</span>
-                <span class="badge-main">Google Play</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="hero-stats fade-in">
-          <div class="stat">
-            <span class="stat-number">7+</span>
-            <span class="stat-label">Industries</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-number">∞</span>
-            <span class="stat-label">Scalability</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-number">1</span>
-            <span class="stat-label">Platform</span>
-          </div>
-        </div>
+<header class="hero wrap" id="product">
+  <div class="mono-label">Membership OS | Built for Malaysia</div>
+  <h1>Run your gym or salon on one system.</h1>
+  <p class="sub">Sell packages, take bookings, check members in, and get paid. All on Malaysian rails: FPX, DuitNow, WhatsApp, BM and EN.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="https://app.timeo.my/sign-in">Start for RM99/mo</a>
+    <a class="btn btn-ghost" href="mailto:hello@timeo.my">Talk to us</a>
+  </div>
+  <div class="hero-note">LIVE IN 15 MINUTES | NO SETUP FEES | NO LOCK-IN</div>
+
+  <div class="mock-frame">
+    <div class="mock-bar">
+      <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+      <span class="mock-url">app.timeo.my/dashboard</span>
+    </div>
+    <div class="mock-body">
+      <div class="mock-side">
+        <div class="brand">timeo</div>
+        <div class="mock-nav-item active">Dashboard</div>
+        <div class="mock-nav-item">Members <span class="count">412</span></div>
+        <div class="mock-nav-item">Classes <span class="count">9</span></div>
+        <div class="mock-nav-item">Bookings <span class="count">24</span></div>
+        <div class="mock-nav-item">Payments</div>
+        <div class="mock-nav-item">Reports</div>
       </div>
-
-      <!-- DASHBOARD MOCKUP -->
-      <div class="hero-visual fade-in">
-        <div class="dashboard-mockup">
-          <div class="mockup-topbar">
-            <div class="mockup-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="mockup-url">app.timeo.my</div>
-            <div class="mockup-actions">
-              <div class="mock-icon"></div>
-              <div class="mock-icon"></div>
-            </div>
+      <div class="mock-main mock-main-rel">
+        <div class="mock-title-row">
+          <div class="mock-title">Today at Iron Works Gym</div>
+          <div class="mock-chip">WED 30 JUL</div>
+        </div>
+        <div class="mock-stats">
+          <div class="mock-stat"><div class="k">Check-ins today</div><div class="v">128</div><div class="d">+12% VS LAST WED</div></div>
+          <div class="mock-stat"><div class="k">Collected today</div><div class="v">RM 1,840</div><div class="d">FPX | DUITNOW | CASH</div></div>
+          <div class="mock-stat"><div class="k">Renewals due</div><div class="v">7</div><div class="d">REMINDERS SENT</div></div>
+        </div>
+        <div class="mock-table">
+          <div class="mock-row"><div>Member</div><div class="col-plan">Plan</div><div>Status</div><div style="text-align:right">Paid</div></div>
+          <div class="mock-row">
+            <div class="name"><span class="mock-ava">AR</span>Aisyah Rahman</div>
+            <div class="col-plan">Unlimited Gym</div>
+            <div><span class="pill ok">Checked in</span></div>
+            <div class="mock-amt">RM 99.00</div>
           </div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar">
-              <div class="sidebar-logo">timeo<span>.</span></div>
-              <div class="sidebar-nav">
-                <div class="sidebar-item active">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                  Dashboard
-                </div>
-                <div class="sidebar-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  Bookings
-                </div>
-                <div class="sidebar-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                  Products
-                </div>
-                <div class="sidebar-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  Customers
-                </div>
-                <div class="sidebar-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                  Orders
-                </div>
-                <div class="sidebar-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-                  Settings
-                </div>
-              </div>
-            </div>
-            <div class="mockup-main">
-              <div class="mockup-header-row">
-                <div>
-                  <div class="mock-title">Dashboard</div>
-                  <div class="mock-subtitle">WS Fitness · Today</div>
-                </div>
-                <div class="mock-badge-green">Live</div>
-              </div>
-              <div class="mockup-stats-row">
-                <div class="mock-stat-card">
-                  <div class="mock-stat-label">Bookings Today</div>
-                  <div class="mock-stat-value">24</div>
-                  <div class="mock-stat-trend up">↑ 12%</div>
-                </div>
-                <div class="mock-stat-card">
-                  <div class="mock-stat-label">Revenue</div>
-                  <div class="mock-stat-value">RM 1,840</div>
-                  <div class="mock-stat-trend up">↑ 8%</div>
-                </div>
-                <div class="mock-stat-card">
-                  <div class="mock-stat-label">Active Members</div>
-                  <div class="mock-stat-value">312</div>
-                  <div class="mock-stat-trend up">↑ 3%</div>
-                </div>
-              </div>
-              <div class="mock-bookings-title">Upcoming Bookings</div>
-              <div class="mock-booking-list">
-                <div class="mock-booking-item">
-                  <div class="mock-avatar mock-avatar-blue">JL</div>
-                  <div class="mock-booking-info">
-                    <div class="mock-booking-name">Jason Lim</div>
-                    <div class="mock-booking-service">Personal Training · 10:00 AM</div>
-                  </div>
-                  <div class="mock-status confirmed">Confirmed</div>
-                </div>
-                <div class="mock-booking-item">
-                  <div class="mock-avatar mock-avatar-purple">SA</div>
-                  <div class="mock-booking-info">
-                    <div class="mock-booking-name">Sarah Amin</div>
-                    <div class="mock-booking-service">Yoga Class · 11:30 AM</div>
-                  </div>
-                  <div class="mock-status confirmed">Confirmed</div>
-                </div>
-                <div class="mock-booking-item">
-                  <div class="mock-avatar mock-avatar-orange">RM</div>
-                  <div class="mock-booking-info">
-                    <div class="mock-booking-name">Ravi M.</div>
-                    <div class="mock-booking-service">CrossFit · 2:00 PM</div>
-                  </div>
-                  <div class="mock-status pending">Pending</div>
-                </div>
-              </div>
-            </div>
+          <div class="mock-row">
+            <div class="name"><span class="mock-ava b">ML</span>Marcus Lim</div>
+            <div class="col-plan">10-session pack</div>
+            <div><span class="pill ok">Booked 7pm</span></div>
+            <div class="mock-amt">RM 450.00</div>
+          </div>
+          <div class="mock-row">
+            <div class="name"><span class="mock-ava c">PN</span>Priya Nair</div>
+            <div class="col-plan">Monthly Yoga</div>
+            <div><span class="pill warn">Expires 2 Aug</span></div>
+            <div class="mock-amt">RM 120.00</div>
+          </div>
+          <div class="mock-row">
+            <div class="name"><span class="mock-ava d2">WT</span>Wei Jian Tan</div>
+            <div class="col-plan">Unlimited Gym</div>
+            <div><span class="pill mut">Frozen</span></div>
+            <div class="mock-amt">RM 99.00</div>
           </div>
         </div>
-        <div class="mockup-glow"></div>
-      </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- APP DOWNLOAD SECTION -->
-  <section class="app-download-section">
-    <div class="container">
-      <div class="app-download-content">
-        <div class="app-download-text reveal">
-          <div class="section-badge" style="margin-bottom:16px;">Mobile App</div>
-          <h2>Take Timeo<br /><span class="gradient-text">everywhere.</span></h2>
-          <p>Your staff and customers stay connected on the go. Full-featured mobile apps for iOS and Android — bookings, QR check-ins, and more in your pocket.</p>
-          <div class="app-badges-label">Available on</div>
-          <div class="app-badges">
-            <a href="#" class="app-badge apple-badge">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-              </svg>
-              <div class="badge-text">
-                <span class="badge-sub">Download on the</span>
-                <span class="badge-main">App Store</span>
-              </div>
-            </a>
-            <a href="#" class="app-badge google-badge">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.18 23.76c.3.17.64.24.99.2l12.5-11.46-3.5-3.5L3.18 23.76zM.54 1.18C.2 1.54 0 2.1 0 2.84v18.32c0 .74.2 1.3.55 1.66l.09.08 10.26-10.26v-.24L.63 1.1l-.09.08zM22.3 10.56l-2.94-1.67-3.29 3.29 3.29 3.29 2.96-1.68c.84-.48.84-1.26-.02-1.74v.01zM4.17.24l12.5 11.46-3.5 3.5L.99.44C1.51.06 2.13.01 2.79.24h1.38z"/>
-              </svg>
-              <div class="badge-text">
-                <span class="badge-sub">Get it on</span>
-                <span class="badge-main">Google Play</span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="app-phone-mockup reveal">
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- App screen: Member QR Card -->
-              <div class="phone-app-header">
-                <span class="phone-app-logo">timeo<span>.</span></span>
-                <span class="phone-app-greeting">Good morning 👋</span>
-              </div>
-              <div class="phone-qr-card">
-                <div class="phone-qr-label">Member Card</div>
-                <div class="phone-qr-name">Jason Lim</div>
-                <div class="phone-qr-code">
-                  <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
-                    <!-- QR code pattern (decorative) -->
-                    <rect x="4" y="4" width="24" height="24" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
-                    <rect x="10" y="10" width="12" height="12" rx="1" fill="#fff"/>
-                    <rect x="52" y="4" width="24" height="24" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
-                    <rect x="58" y="10" width="12" height="12" rx="1" fill="#fff"/>
-                    <rect x="4" y="52" width="24" height="24" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
-                    <rect x="10" y="58" width="12" height="12" rx="1" fill="#fff"/>
-                    <!-- dots -->
-                    <rect x="34" y="4" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="41" y="4" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="11" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="41" y="18" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="25" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="52" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="59" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="66" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="52" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="66" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="59" y="48" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="52" y="55" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="59" y="62" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="66" y="55" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="4" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="11" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="18" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="25" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="4" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="18" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="25" y="48" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="34" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="41" y="41" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="41" y="48" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="55" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="34" y="62" width="5" height="5" rx="1" fill="#fff"/>
-                    <rect x="41" y="62" width="5" height="5" rx="1" fill="#fff"/>
-                  </svg>
-                </div>
-                <div class="phone-qr-member-id">ID · TM-00312</div>
-                <div class="phone-qr-status">Active Member</div>
-              </div>
-              <div class="phone-upcoming-label">Upcoming Bookings</div>
-              <div class="phone-booking-row">
-                <div class="phone-booking-dot blue"></div>
-                <div class="phone-booking-info">
-                  <div class="phone-booking-title">Personal Training</div>
-                  <div class="phone-booking-time">Today · 10:00 AM</div>
-                </div>
-                <div class="phone-booking-badge confirmed">✓</div>
-              </div>
-              <div class="phone-booking-row">
-                <div class="phone-booking-dot purple"></div>
-                <div class="phone-booking-info">
-                  <div class="phone-booking-title">Yoga Class</div>
-                  <div class="phone-booking-time">Tomorrow · 9:00 AM</div>
-                </div>
-                <div class="phone-booking-badge pending">·</div>
-              </div>
-            </div>
-          </div>
-          <!-- floating glow -->
-          <div class="phone-glow"></div>
+        <div class="mock-toast">
+          <div class="wa">✓</div>
+          <div><b>WhatsApp sent</b><span>Booking confirmed: Muay Thai Basics, Mon 7:00pm</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- SOCIAL PROOF -->
-  <section class="social-proof">
-    <div class="container">
-      <p class="proof-label">Trusted by businesses across industries</p>
-      <div class="proof-logos">
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg></span>
-          <span>Gyms</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/></svg></span>
-          <span>Cafés</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" x2="8.12" y1="4" y2="15.88"/><line x1="14.47" x2="20" y1="14.48" y2="20"/><line x1="8.12" x2="12" y1="8.12" y2="12"/></svg></span>
-          <span>Salons</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"/></svg></span>
-          <span>Clinics</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-          <span>Tuition</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-          <span>Retail</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
-          <span>F&amp;B</span>
-        </div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="mono-label">The problem</div>
+      <h2>Spreadsheets and manual WhatsApp don't scale past 50 members.</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="mono-label">01</div>
+        <h3>Renewals slip through</h3>
+        <p>Expired memberships go unnoticed for weeks. Chasing payment over chat is awkward, and every missed renewal is money already earned that never arrives.</p>
+      </div>
+      <div class="prob-card">
+        <div class="mono-label">02</div>
+        <h3>Bookings live in someone's head</h3>
+        <p>Class lists on paper, coach schedules in a group chat, no-shows with no penalty. Nobody knows who's actually entitled to walk through the door.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-badge">Features</div>
-        <h2 class="section-title">Everything your business needs.<br /><span class="gradient-text">Nothing it doesn't.</span></h2>
-        <p class="section-subtitle">A complete operating system designed for modern service businesses and retailers.</p>
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="mono-label">What you get</div>
+      <h2>Everything a membership business runs on.</h2>
+      <p>One login. One monthly price. Every pillar built for how Malaysian gyms and salons actually operate.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="num">01</div>
+        <h3>Memberships &amp; packages</h3>
+        <p>Session packs, recurring memberships, wallets with top-up bonuses, expiry grace periods. Members always know what they have left.</p>
       </div>
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></div>
-          <h3 class="feature-title">Smart Bookings</h3>
-          <p class="feature-desc">Accept and manage appointments effortlessly. Automated confirmations, reminders, and real-time availability.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>
-          <h3 class="feature-title">Product Sales</h3>
-          <p class="feature-desc">Sell physical and digital products with ease. Inventory management, orders, and fulfillment in one place.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3 class="feature-title">Customer Management</h3>
-          <p class="feature-desc">Know your customers, track their history. Build lasting relationships with full customer profiles and insights.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3 class="feature-title">Staff &amp; Roles</h3>
-          <p class="feature-desc">Multi-role access control for your whole team. Assign permissions, track performance, and keep everyone aligned.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></div>
-          <h3 class="feature-title">Integrations</h3>
-          <p class="feature-desc">Connect payment gateways, access control, and more. Timeo plugs into the tools you already use.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div>
-          <h3 class="feature-title">Multi-Tenant</h3>
-          <p class="feature-desc">Each business gets their own isolated environment. Complete data separation with your brand front and center.</p>
-        </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <h3>Bookings that run themselves</h3>
+        <p>Classes, coach sessions, recurring slots. Waitlists auto-promote when someone cancels, and cancel-abuse rules protect your schedule.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <h3>Check-in &amp; door access</h3>
+        <p>QR check-in, NFC cards, turnstile and door hardware, Apple Wallet passes. Entitlement checked at the door, not on trust.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">04</div>
+        <h3>Malaysian payments</h3>
+        <p>FPX and DuitNow through your own Billplz account. Money lands in your bank, receipts and e-invoice handled.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">05</div>
+        <h3>WhatsApp on autopilot</h3>
+        <p>Booking confirmations, class reminders, renewal nudges. Sent from your own number, in BM or English.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">06</div>
+        <h3>A member app they'll actually use</h3>
+        <p>iOS, Android, and web. Members book, pay, and show their pass themselves, in BM or English, light or dark.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- INDUSTRIES -->
-  <section class="industries" id="industries">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-badge">Industries</div>
-        <h2 class="section-title">Built for the businesses<br /><span class="gradient-text">that keep Malaysia running.</span></h2>
-        <p class="section-subtitle">Whether you run a gym or a café, Timeo adapts to how your industry works.</p>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="mono-label">Who it's for</div>
+      <h2>Built deep for two verticals. Not shallow for twenty.</h2>
+    </div>
+    <div class="vert-strip">
+      <div class="vert">
+        <div class="emoji">🏋️</div>
+        <h3>Gyms &amp; fitness studios</h3>
+        <p>Class schedules, coach sessions, door hardware, NFC and QR check-in. Running real gyms in Malaysia today.</p>
       </div>
-      <div class="industries-grid">
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg></div>
-          <h3 class="industry-name">Gym &amp; Fitness</h3>
-          <p class="industry-desc">Manage class schedules, member subscriptions, personal training bookings, and access control — all in one dashboard.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/></svg></div>
-          <h3 class="industry-name">Café &amp; Coffee</h3>
-          <p class="industry-desc">Take pre-orders, manage your menu, handle in-store pickups, and build a loyal customer base with ease.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" x2="8.12" y1="4" y2="15.88"/><line x1="14.47" x2="20" y1="14.48" y2="20"/><line x1="8.12" x2="12" y1="8.12" y2="12"/></svg></div>
-          <h3 class="industry-name">Salon &amp; Beauty</h3>
-          <p class="industry-desc">Online booking for stylists, appointment reminders, service menus, and client notes to keep everyone looking great.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"/></svg></div>
-          <h3 class="industry-name">Clinic &amp; Wellness</h3>
-          <p class="industry-desc">Patient scheduling, consultation management, billing, and staff role controls designed for healthcare workflows.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-          <h3 class="industry-name">Tuition Center</h3>
-          <p class="industry-desc">Class enrollment, session bookings, student records, fee collection, and parent communication in one platform.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-          <h3 class="industry-name">Retail Store</h3>
-          <p class="industry-desc">Product catalog, inventory tracking, order management, and customer loyalty — your full retail stack unified.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></div>
-          <h3 class="industry-name">F&amp;B Outlets</h3>
-          <p class="industry-desc">Table reservations, takeaway orders, menu management, and customer data to power your food business forward.</p>
-        </div>
-        <div class="industry-card reveal">
-          <div class="industry-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04"/></svg></div>
-          <h3 class="industry-name">Barbershop &amp; Grooming</h3>
-          <p class="industry-desc">Walk-in queue management, appointment booking, staff scheduling, and loyalty rewards for your grooming business.</p>
-        </div>
+      <div class="vert">
+        <div class="emoji">🏊</div>
+        <h3>Swim schools</h3>
+        <p>Recurring lesson slots, term packages, parent-friendly booking, attendance you can trust.</p>
+      </div>
+      <div class="vert">
+        <div class="emoji">💇</div>
+        <h3>Salons &amp; barbershops</h3>
+        <p>The same booking spine with staff rosters, service menus, and packages that keep clients coming back.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how-it-works" id="how-it-works">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-badge">How It Works</div>
-        <h2 class="section-title">Up and running<br /><span class="gradient-text">in three steps.</span></h2>
-        <p class="section-subtitle">No lengthy setup. No developer needed. Just your business, live.</p>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="mono-label">How it works</div>
+      <h2>Live before your next class starts.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">STEP 01</div>
+        <h3>Sign up &amp; pay RM99</h3>
+        <p>Your tenant comes pre-configured for gyms or salons. No sales call, no onboarding fee, no waiting.</p>
       </div>
-      <div class="steps-container">
-        <div class="step reveal">
-          <div class="step-number">01</div>
-          <div class="step-content">
-            <div class="step-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <h3 class="step-title">Sign Up Your Business</h3>
-            <p class="step-desc">Create your tenant account, set your business name, category, and branding. Your isolated environment is ready instantly.</p>
-          </div>
-        </div>
-        <div class="step-connector reveal">
-          <div class="connector-line"></div>
-          <div class="connector-arrow">→</div>
-        </div>
-        <div class="step reveal">
-          <div class="step-number">02</div>
-          <div class="step-content">
-            <div class="step-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <h3 class="step-title">Configure Services &amp; Products</h3>
-            <p class="step-desc">Add your services, set prices, upload products, configure staff roles, and connect payment gateways — all from your dashboard.</p>
-          </div>
-        </div>
-        <div class="step-connector reveal">
-          <div class="connector-line"></div>
-          <div class="connector-arrow">→</div>
-        </div>
-        <div class="step reveal">
-          <div class="step-number">03</div>
-          <div class="step-content">
-            <div class="step-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <h3 class="step-title">Go Live &amp; Serve Customers</h3>
-            <p class="step-desc">Share your booking link, start taking orders, and watch your business run smoother than ever before.</p>
-          </div>
-        </div>
+      <div class="step">
+        <div class="num">STEP 02</div>
+        <h3>Create your first package</h3>
+        <p>Set your plans and prices, add staff, connect Billplz. Most owners finish in one sitting.</p>
+      </div>
+      <div class="step">
+        <div class="num">STEP 03</div>
+        <h3>Members book, pay, check in</h3>
+        <p>They get WhatsApp confirmations automatically. You watch it happen from the dashboard.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TESTIMONIAL -->
-  <section class="testimonial-section">
-    <div class="container">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-quote">"</div>
-        <blockquote class="testimonial-text">
-          Timeo transformed how we run WS Fitness. From member check-ins to payment tracking — everything in one place.
-        </blockquote>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">WF</div>
-          <div class="testimonial-info">
-            <div class="testimonial-name">WS Fitness</div>
-            <div class="testimonial-location">Sitiawan, Perak</div>
-          </div>
-          <div class="testimonial-stars">★★★★★</div>
-        </div>
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <div class="mono-label">Pricing</div>
+      <h2>One price. Everything included.</h2>
+      <p>No tiers to decode, no per-member fees, no surprises at 500 members.</p>
+    </div>
+    <div class="price-card">
+      <div class="mono-label">Timeo | Full platform</div>
+      <div class="price-amount">RM99<small>/month</small></div>
+      <p class="price-note">Flat. Per location. Cancel anytime.</p>
+      <div class="price-feats">
+        <div><span class="tick">✓</span> Unlimited members</div>
+        <div><span class="tick">✓</span> Unlimited staff accounts</div>
+        <div><span class="tick">✓</span> Memberships, packages &amp; wallets</div>
+        <div><span class="tick">✓</span> Classes, coaches &amp; waitlists</div>
+        <div><span class="tick">✓</span> QR check-in &amp; Apple Wallet</div>
+        <div><span class="tick">✓</span> FPX &amp; DuitNow via Billplz</div>
+        <div><span class="tick">✓</span> WhatsApp confirmations &amp; reminders</div>
+        <div><span class="tick">✓</span> Member app (iOS, Android, web)</div>
+      </div>
+      <a class="btn btn-primary" href="https://app.timeo.my/sign-in" style="width:100%; justify-content:center;">Start now</a>
+      <div class="price-sub">DOOR HARDWARE &amp; POS AVAILABLE AS ADD-ONS | ASK US</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="mono-label">FAQ</div>
+      <h2>Common questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Do I need special hardware to start?</summary>
+        <div class="a">No. QR check-in works with any phone or tablet from day one. NFC cards, turnstiles, and door controllers are optional add-ons when you're ready to gate entry automatically.</div>
+      </details>
+      <details>
+        <summary>How do members pay me?</summary>
+        <div class="a">Online payments run through your own Billplz account, so FPX and DuitNow transfers land directly in your bank. Cash and terminal payments can be recorded at the counter too.</div>
+      </details>
+      <details>
+        <summary>How does the WhatsApp automation work?</summary>
+        <div class="a">You scan one QR code to connect your business WhatsApp number. From then on, booking confirmations, class reminders, and renewal nudges send automatically from your own number.</div>
+      </details>
+      <details>
+        <summary>Can I move my existing members over?</summary>
+        <div class="a">Yes. Bring your member list in a spreadsheet and we'll help you import members, remaining sessions, and expiry dates so nobody loses what they've paid for.</div>
+      </details>
+      <details>
+        <summary>Is there a contract or lock-in?</summary>
+        <div class="a">No. RM99/mo, cancel anytime, and your data is always yours to export.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="mono-label">Get started</div>
+    <h2>Your front desk, on autopilot.</h2>
+    <p>Set up tonight. Take your first booking tomorrow.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://app.timeo.my/sign-in">Start for RM99/mo</a>
+      <a class="btn btn-ghost" href="mailto:hello@timeo.my">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">timeo<span>.my</span></div>
+        <p>The membership OS for Malaysian gyms, fitness studios, and salons.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://app.timeo.my/sign-in">Log in</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="mailto:hello@timeo.my">Contact</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="mailto:hello@timeo.my">hello@timeo.my</a>
       </div>
     </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-badge">Pricing</div>
-        <h2 class="section-title">Simple, transparent<br /><span class="gradient-text">pricing for every stage.</span></h2>
-        <p class="section-subtitle">Start free, scale as you grow. No hidden fees, no surprises.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="pricing-card reveal">
-          <div class="pricing-tier">Starter</div>
-          <div class="pricing-price">
-            <span class="price-amount">Free</span>
-          </div>
-          <p class="pricing-desc">Perfect for getting started. Everything you need to run your first location.</p>
-          <ul class="pricing-features">
-            <li><span class="check">✓</span> 1 location</li>
-            <li><span class="check">✓</span> Up to 2 staff accounts</li>
-            <li><span class="check">✓</span> Booking management</li>
-            <li><span class="check">✓</span> Basic product catalog</li>
-            <li><span class="check">✓</span> Customer records</li>
-            <li class="muted"><span class="cross">–</span> Advanced analytics</li>
-            <li class="muted"><span class="cross">–</span> Integrations</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-full">Get Started Free</a>
-        </div>
-
-        <div class="pricing-card pricing-featured reveal">
-          <div class="pricing-popular-badge">Most Popular</div>
-          <div class="pricing-tier">Growth</div>
-          <div class="pricing-price">
-            <span class="price-currency">RM</span>
-            <span class="price-amount">299</span>
-            <span class="price-period">/mo</span>
-          </div>
-          <p class="pricing-desc">For growing businesses that need more power, more staff, and more features.</p>
-          <ul class="pricing-features">
-            <li><span class="check">✓</span> Multiple locations</li>
-            <li><span class="check">✓</span> Unlimited staff accounts</li>
-            <li><span class="check">✓</span> Advanced booking flows</li>
-            <li><span class="check">✓</span> Full product management</li>
-            <li><span class="check">✓</span> Customer analytics</li>
-            <li><span class="check">✓</span> Advanced reporting</li>
-            <li class="muted"><span class="cross">–</span> Custom integrations</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-full">Start Growth Plan</a>
-        </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-tier">Enterprise</div>
-          <div class="pricing-price">
-            <span class="price-amount">Custom</span>
-          </div>
-          <p class="pricing-desc">For large operations, multi-location chains, and businesses with complex needs.</p>
-          <ul class="pricing-features">
-            <li><span class="check">✓</span> Unlimited locations</li>
-            <li><span class="check">✓</span> Unlimited everything</li>
-            <li><span class="check">✓</span> Custom integrations</li>
-            <li><span class="check">✓</span> Access control systems</li>
-            <li><span class="check">✓</span> Dedicated support</li>
-            <li><span class="check">✓</span> SLA guarantee</li>
-            <li><span class="check">✓</span> White-label options</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-full">Contact Sales</a>
-        </div>
-      </div>
+    <div class="foot-base">
+      <span>© 2026 Timeo. All rights reserved.</span>
+      <span class="mono-label" style="font-size:11px">MADE IN MALAYSIA</span>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- CTA SECTION -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-card reveal">
-        <div class="cta-glow"></div>
-        <h2 class="cta-title">Ready to transform<br />your business?</h2>
-        <p class="cta-subtitle">Join businesses across Malaysia already running on Timeo. Start free, no credit card required.</p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-white btn-large">Get Started Free</a>
-          <a href="#contact" class="btn btn-ghost-white btn-large">Talk to Sales</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="contact-inner reveal">
-        <div class="section-header" style="margin-bottom: 48px;">
-          <div class="section-badge">Get Onboarded</div>
-          <h2 class="section-title">Get Your Business<br /><span class="gradient-text">on Timeo</span></h2>
-          <p class="section-subtitle">Tell us about your business and we'll get you set up. No commitment, no credit card. Just reach out and we'll take it from there.</p>
-        </div>
-        <form class="contact-form" action="https://formsubmit.co/elon@oxloz.com" method="POST">
-          <input type="hidden" name="_subject" value="New Timeo Business Inquiry" />
-          <input type="hidden" name="_next" value="https://timeo.my/thanks.html" />
-          <input type="hidden" name="_captcha" value="false" />
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contact-name">Your Name</label>
-              <input type="text" id="contact-name" name="name" placeholder="e.g. Ahmad Razif" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-email">Email Address</label>
-              <input type="email" id="contact-email" name="email" placeholder="you@yourbusiness.com" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contact-business">Business Name</label>
-              <input type="text" id="contact-business" name="business" placeholder="e.g. WS Fitness" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-industry">Industry</label>
-              <select id="contact-industry" name="industry" required>
-                <option value="" disabled selected>Select your industry</option>
-                <option value="Gym & Fitness">Gym &amp; Fitness</option>
-                <option value="Café & F&B">Café &amp; F&amp;B</option>
-                <option value="Salon & Beauty">Salon &amp; Beauty</option>
-                <option value="Clinic & Wellness">Clinic &amp; Wellness</option>
-                <option value="Tuition Center">Tuition Center</option>
-                <option value="Retail Store">Retail Store</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="contact-message">Tell us about your business <span style="opacity:0.5">(optional)</span></label>
-            <textarea id="contact-message" name="message" rows="4" placeholder="How many locations? What are your main challenges? Anything that helps us prepare..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-large btn-submit">Send Inquiry →</button>
-        </form>
-        <p class="contact-direct">Or reach us directly at <a href="mailto:hello@timeo.my"><strong>hello@timeo.my</strong></a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">timeo<span>.</span></div>
-          <p class="footer-tagline">One Platform. Every Business.</p>
-          <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <a href="#" class="social-link" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <div class="footer-col">
-            <h4 class="footer-col-title">Product</h4>
-            <ul>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#pricing">Pricing</a></li>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#">Changelog</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4 class="footer-col-title">Industries</h4>
-            <ul>
-              <li><a href="#industries">Gym &amp; Fitness</a></li>
-              <li><a href="#industries">Café &amp; F&amp;B</a></li>
-              <li><a href="#industries">Salon &amp; Beauty</a></li>
-              <li><a href="#industries">Clinic &amp; Wellness</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4 class="footer-col-title">Company</h4>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4 class="footer-col-title">Legal</h4>
-            <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
-              <li><a href="#">Security</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-copy">© 2026 Timeo. All rights reserved. · <a href="https://timeo.my">timeo.my</a></div>
-        <div class="footer-made">Made with <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e25555" stroke="#e25555" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin:0 2px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> in Malaysia</div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
